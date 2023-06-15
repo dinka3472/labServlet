@@ -96,4 +96,15 @@ public class Address {
     public int hashCode() {
         return Objects.hash(id, ip, mac, model, address);
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", ip='" + ip + '\'' +
+                ", mac='" + mac + '\'' +
+                ", model='" + model + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

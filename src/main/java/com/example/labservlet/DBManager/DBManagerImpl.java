@@ -2,6 +2,8 @@ package com.example.labservlet.DBManager;
 
 import com.example.labservlet.models.entitys.Client;
 import com.example.labservlet.models.enums.ClientType;
+
+import jakarta.annotation.ManagedBean;
 import jakarta.ejb.Singleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
 
 
 @Singleton
+
 public class DBManagerImpl implements DBManager {
     @PersistenceContext
     private EntityManager entityManager;
