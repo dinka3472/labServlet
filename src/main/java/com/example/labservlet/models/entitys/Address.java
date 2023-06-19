@@ -1,5 +1,6 @@
 package com.example.labservlet.models.entitys;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -29,9 +30,6 @@ public class Address {
     @Column(name = "address")
     @Size(min = 1, max = 200)
     private String address;
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
 
     public Address() {
     }
@@ -76,13 +74,6 @@ public class Address {
         this.address = address;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
 
     @Override
     public boolean equals(Object o) {

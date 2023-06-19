@@ -1,6 +1,6 @@
 package com.example.labservlet.validation.Impl;
 
-import com.example.labservlet.DBManager.DBManager;
+import com.example.labservlet.DBManager.DBManagerClient;
 import com.example.labservlet.models.entitys.Client;
 import com.example.labservlet.validation.ClientValidator;
 import jakarta.ejb.Stateless;
@@ -15,7 +15,7 @@ public class ClientValidatorImpl implements ClientValidator {
     @Inject
     private Validator validator;
     @Inject
-    private DBManager dbManager;
+    private DBManagerClient dbManager;
 
     @Override
     public boolean validateClient(Client client) {

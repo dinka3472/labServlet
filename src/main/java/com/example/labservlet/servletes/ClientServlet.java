@@ -37,7 +37,6 @@ public abstract class ClientServlet extends HttpServlet {
             address.setMac(addressMacs[i]);
             address.setModel(addressModels[i]);
             address.setAddress(addressLocations[i]);
-            address.setClient(client);
             addresses.add(address);
         }
         client.setAddresses(addresses);

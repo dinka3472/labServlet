@@ -9,4 +9,6 @@ public interface AddressValidator {
     boolean AddressValidate(Address addresses);
 
     boolean AddressesValidate(List<Address> addresses);
+
+    void addressIsExistById(Integer addressId);
 }

@@ -1,5 +1,6 @@
 package com.example.labservlet.validation.Impl;
 
+import com.example.labservlet.DBManager.DBManagerAddress;
 import com.example.labservlet.models.entitys.Address;
 import com.example.labservlet.validation.AddressValidator;
 import jakarta.ejb.Stateless;
@@ -14,6 +15,8 @@ import java.util.Set;
 public class AddressValidatorImpl implements AddressValidator {
     @Inject
     private Validator validator;
+    @Inject
+    private DBManagerAddress dbManagerAddress;
 
 
     @Override
@@ -26,5 +29,12 @@ public class AddressValidatorImpl implements AddressValidator {
     public boolean AddressesValidate(List<Address> addresses) {
         Set<ConstraintViolation<List<Address>>> violations = validator.validate(addresses);
         return violations.isEmpty();
+    }
+
+    @Override
+    public void addressIsExistById(Integer addressId) {
+        if (dbManagerAddress.getAddressById(addressId) == null) {
+            throw new RuntimeException("Клиент с таким id не существует");
+        }
     }
 }

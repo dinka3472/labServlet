@@ -1,9 +1,9 @@
-package com.example.labservlet.DBManager;
+package com.example.labservlet.DBManager.Impl;
 
+import com.example.labservlet.DBManager.DBManagerClient;
 import com.example.labservlet.models.entitys.Client;
 import com.example.labservlet.models.enums.ClientType;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.ejb.Singleton;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -15,8 +15,7 @@ import java.util.stream.Collectors;
 
 
 @Singleton
-
-public class DBManagerImpl implements DBManager {
+public class DBManagerClientImpl implements DBManagerClient {
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -43,8 +42,8 @@ public class DBManagerImpl implements DBManager {
     }
 
     @Override
-    public void updateClient(Client client) {
-        entityManager.merge(client);
+    public Client updateClient(Client client) {
+        return entityManager.merge(client);
     }
 
     @Override

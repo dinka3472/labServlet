@@ -1,4 +1,4 @@
-package com.example.labservlet.util;
+package com.example.labservlet.parsersXML;
 
 import com.example.labservlet.models.entitys.Address;
 import com.example.labservlet.models.entitys.Client;
@@ -13,7 +13,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DemoDom {
     public List<Client> parseXML(String filePath, String searchQuery) {
@@ -30,7 +29,7 @@ public class DemoDom {
                 Node clientNode = clientList.item(i);
                 if (clientNode.getNodeType() == Node.ELEMENT_NODE ) {
                     Element clientElement = (Element) clientNode;
-                    if (clientElement.getElementsByTagName("ClientName").item(0).getTextContent().contains(searchQuery)) {
+                    if (clientElement.getElementsByTagName("ClientName").item(0).getTextContent().toLowerCase().contains(searchQuery.toLowerCase())) {
                         String clientId = clientElement.getElementsByTagName("ClientId").item(0).getTextContent();
                         String clientName = clientElement.getElementsByTagName("ClientName").item(0).getTextContent();
                         String clientType = clientElement.getElementsByTagName("Type").item(0).getTextContent();

@@ -1,8 +1,7 @@
-package com.example.labservlet.util;
+package com.example.labservlet.parsersXML;
 
 import com.example.labservlet.models.entitys.Address;
 import com.example.labservlet.models.entitys.Client;
-import jakarta.servlet.FilterConfig;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -12,7 +11,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Transformer {
@@ -24,7 +22,6 @@ public class Transformer {
 
             Element rootElement = doc.createElement("Clients");
             doc.appendChild(rootElement);
-
 
             for (Client client : clients) {
                 Element clientElement = doc.createElement("Client");
@@ -49,7 +46,6 @@ public class Transformer {
                 Element addressesElement = doc.createElement("Addresses");
                 clientElement.appendChild(addressesElement);
 
-// Добавляем адреса клиента
                 List<Address> addresses = client.getAddresses();
 
                 for (Address address : addresses) {
@@ -81,19 +77,10 @@ public class Transformer {
             }
 
 
-// Запись документа в файл
-
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             javax.xml.transform.Transformer transformer = transformerFactory.newTransformer();
             //String filePath = "Clients.xml";
             File file = new File(filePath);
-            boolean created = file.createNewFile();
-            if (created) {
-                System.out.println("Файл создан: " + file.getAbsolutePath() + " " + file.getPath());
-            } else {
-                System.out.println("Файл уже существует: " + file.getAbsolutePath() + " " + file.getPath());
-            }
-
 
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(file);
@@ -101,7 +88,7 @@ public class Transformer {
 
             System.out.println("XML-документ сохранен.");
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
     }
 

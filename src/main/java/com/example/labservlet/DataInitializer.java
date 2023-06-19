@@ -45,7 +45,7 @@ public class DataInitializer {
                 address.setMac(generateRandomMacAddress());
                 address.setModel("Model " + (j + 1));
                 address.setAddress(getRandomAddress());
-                address.setClient(client);
+                //address.setClient(client);
                 client.getAddresses().add(address);
             }
 

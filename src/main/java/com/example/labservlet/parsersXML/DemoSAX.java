@@ -1,4 +1,4 @@
-package com.example.labservlet.util;
+package com.example.labservlet.parsersXML;
 
 import com.example.labservlet.models.entitys.Address;
 import com.example.labservlet.models.entitys.Client;
@@ -23,7 +23,7 @@ public class DemoSAX {
             parser.parse(new File(filePath), handler);
 
             return handler.getClients().stream()
-                    .filter(client -> client.getClientName().contains(searchQuery))
+                    .filter(client -> client.getClientName().toLowerCase().contains(searchQuery.toLowerCase()))
                     .collect(Collectors.toList());
 
         } catch (Exception e) {
